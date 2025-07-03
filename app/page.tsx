@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -18,7 +19,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <Link href="/" className="text-lg font-bold">
-              stephen campbell
+              Stephen Campbell
             </Link>
             <div className="flex space-x-6 text-sm">
               <a href="#about" className="hover:text-gray-600 transition-colors">about</a>
@@ -35,15 +36,17 @@ export default function Home() {
         <motion.section className="py-20" {...fadeInUp}>
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              stephen campbell
+              Stephen Campbell
             </h1>
+            <h2 className="text-lg text-gray-600 font-medium mb-4">
+              full-stack developer | computer programmer
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl">
-              ai-powered full-stack developer specializing in prompt engineering, 
-              modern web technologies, and intelligent automation solutions.
+              chemical engineer turned programmer solving complex problems through intelligent automation and ai-powered solutions.
             </p>
             <div className="flex space-x-4 pt-4">
               <a 
-                href="https://github.com/stepocampbell" 
+                href="https://github.com/campbellsinvestment" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-gray-600 transition-colors"
@@ -59,7 +62,7 @@ export default function Home() {
                 <Linkedin size={20} />
               </a>
               <a 
-                href="mailto:hello@stepocampbell.com"
+                href="mailto:stepocampbell@gmail.com"
                 className="hover:text-gray-600 transition-colors"
               >
                 <Mail size={20} />
@@ -83,7 +86,7 @@ export default function Home() {
               tldr; mostly self-taught by shipping things on the internet
             </p>
             <p>
-              passionate about ai integration, prompt engineering, and building 
+              passionate about profitable saas apps, prompt engineering, and building 
               intelligent systems that solve real problems.
             </p>
             <p>
@@ -109,25 +112,29 @@ export default function Home() {
                 title: "Little Exits",
                 description: "Acquisition marketplace for indie hackers to buy and sell side projects under $100k. Features secure transactions, project valuations, and automated invoicing.",
                 link: "https://littleexits.com",
-                type: "SaaS Platform"
+                type: "SaaS Platform",
+                iconPath: "/icons/littleexits_favicon.png"
               },
               {
                 title: "CheckoutKeys",
                 description: "Automated license key management system for digital products. Integrates with Stripe for instant key generation and delivery via customizable emails.",
                 link: "https://checkoutkeys.com",
-                type: "B2B SaaS"
+                type: "B2B SaaS",
+                iconPath: "/icons/checkoutkeys-logo.png"
               },
               {
                 title: "ExcelBot",
                 description: "AI-powered Excel assistant that generates formulas and VBA code from plain language descriptions. Helps users create complex spreadsheet solutions instantly.",
                 link: "https://excelbot.io",
-                type: "AI Tool"
+                type: "AI Tool",
+                iconPath: "/icons/excelbot_favicon.png"
               },
               {
                 title: "Rent Fair Ontario",
                 description: "Rental market comparison tool using official Statistics Canada data. Helps Ontario residents compare their rent to CMHC market averages.",
                 link: "https://rentfairontario.vercel.app",
-                type: "Data Platform"
+                type: "Data Platform",
+                iconPath: "/icons/rentfair-icon.svg"
               }
             ].map((project, index) => (
               <div key={index} className="group">
@@ -138,16 +145,29 @@ export default function Home() {
                   className="block"
                 >
                   <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <h3 className="font-bold group-hover:text-gray-600 transition-colors">{project.title}</h3>
-                        <span className="text-xs text-gray-500 uppercase tracking-wide">
-                          {project.type}
-                        </span>
+                    <div className="flex items-start space-x-4 flex-1">
+                      <div className="flex-shrink-0 mt-1">
+                        <div className="w-8 h-8 flex items-center justify-center">
+                          <Image 
+                            src={project.iconPath} 
+                            alt={`${project.title} icon`}
+                            width={32} 
+                            height={32} 
+                            className="object-contain"
+                          />
+                        </div>
                       </div>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {project.description}
-                      </p>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <h3 className="font-bold group-hover:text-gray-600 transition-colors">{project.title}</h3>
+                          <span className="text-xs text-gray-500 uppercase tracking-wide">
+                            {project.type}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          {project.description}
+                        </p>
+                      </div>
                     </div>
                     <ExternalLink 
                       size={16} 
@@ -299,28 +319,28 @@ export default function Home() {
               interested in ai-powered development, prompt engineering, or building 
               something innovative together?
             </p>
-            <div className="flex space-x-6">
+            <div className="flex space-x-4 pt-4">
               <a 
-                href="mailto:hello@stepocampbell.com"
-                className="text-sm hover:text-gray-600 transition-colors"
-              >
-                hello@stepocampbell.com
-              </a>
-              <a 
-                href="https://github.com/stepocampbell" 
+                href="https://github.com/campbellsinvestment" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm hover:text-gray-600 transition-colors"
+                className="hover:text-gray-600 transition-colors"
               >
-                github
+                <Github size={20} />
               </a>
               <a 
                 href="https://linkedin.com/in/stepocampbell" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm hover:text-gray-600 transition-colors"
+                className="hover:text-gray-600 transition-colors"
               >
-                linkedin
+                <Linkedin size={20} />
+              </a>
+              <a 
+                href="mailto:stepocampbell@gmail.com"
+                className="hover:text-gray-600 transition-colors"
+              >
+                <Mail size={20} />
               </a>
             </div>
           </div>
@@ -329,7 +349,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="py-8 border-t border-gray-200 text-center">
           <p className="text-xs text-gray-500">
-            © 2025 stephen campbell. built with next.js & ai assistance.
+            © 2025 Stephen Campbell. built with next.js & ai assistance.
           </p>
         </footer>
       </main>
