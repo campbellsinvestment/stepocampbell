@@ -82,20 +82,20 @@ export default function Home() {
 
       <main className="max-w-4xl mx-auto px-6 pt-24">
         {/* Hero Section */}
-        <motion.section className="py-20" {...fadeInUp}>
+        <motion.section className="py-20" {...fadeInUp} itemScope itemType="https://schema.org/Person">
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight" itemProp="name">
               Stephen Campbell
             </h1>
             <h2 className={`text-lg font-medium mb-4 flex items-center gap-2 ${
               isDark ? 'text-gray-400' : 'text-gray-600'
-            }`}>
+            }`} itemProp="jobTitle">
               full-stack developer | computer programmer
               <span className="text-base">🇨🇦</span>
             </h2>
             <p className={`text-xl max-w-2xl ${
               isDark ? 'text-gray-400' : 'text-gray-600'
-            }`}>
+            }`} itemProp="description">
               chemical engineer turned programmer solving complex problems through intelligent automation and ai-powered solutions.
             </p>
             <div className="flex space-x-4 pt-4">
@@ -106,6 +106,8 @@ export default function Home() {
                 className={`transition-colors ${
                   isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
                 }`}
+                itemProp="sameAs"
+                aria-label="GitHub Profile"
               >
                 <Github size={20} />
               </a>
@@ -116,6 +118,8 @@ export default function Home() {
                 className={`transition-colors ${
                   isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
                 }`}
+                itemProp="sameAs"
+                aria-label="LinkedIn Profile"
               >
                 <Linkedin size={20} />
               </a>
@@ -124,6 +128,8 @@ export default function Home() {
                 className={`transition-colors ${
                   isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
                 }`}
+                itemProp="email"
+                aria-label="Email Contact"
               >
                 <Mail size={20} />
               </a>
@@ -423,7 +429,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-8">contact</h2>
           <div className="space-y-4">
             <p className={isDark ? 'text-gray-300' : 'text-gray-700'}>
-              let's build something together.
+              let&apos;s build something together.
             </p>
             <div className="flex space-x-4 pt-4">
               <a 
