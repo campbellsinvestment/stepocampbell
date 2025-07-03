@@ -3,6 +3,7 @@ import './globals.css'
 export const metadata = {
   title: 'Stephen Campbell - Full Stack Developer',
   description: 'Stephen Campbell is a full-stack developer and computer programmer. Chemical engineer turned programmer solving complex problems through intelligent automation and ai-powered solutions.',
+  viewport: 'width=device-width, initial-scale=1',
   keywords: [
     'Stephen Campbell',
     'Stephen Campbell developer',

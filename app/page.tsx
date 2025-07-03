@@ -46,13 +46,27 @@ export default function Home() {
           ? 'bg-slate-900/80 border-slate-700' 
           : 'bg-white/80 border-gray-200'
       }`}>
-        <div className="max-w-4xl mx-auto px-6 py-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <Link href="/" className="text-lg font-bold">
+            <Link href="/" className="text-base sm:text-lg font-bold">
               Stephen Campbell
             </Link>
-            <div className="flex items-center space-x-6">
-              <div className="flex space-x-6 text-sm">
+            <div className="flex items-center space-x-3 sm:space-x-6">
+              <div className="hidden sm:flex space-x-6 text-sm">
+                <a href="#about" className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}>about</a>
+                <a href="#work" className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}>work</a>
+                <a href="#skills" className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}>skills</a>
+                <a href="#contact" className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}>contact</a>
+              </div>
+              <div className="flex sm:hidden space-x-4 text-xs">
                 <a href="#about" className={`transition-colors ${
                   isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
                 }`}>about</a>
@@ -68,32 +82,32 @@ export default function Home() {
               </div>
               <button
                 onClick={() => setIsDark(!isDark)}
-                className={`p-2 rounded-full transition-colors ${
+                className={`p-1.5 sm:p-2 rounded-full transition-colors ${
                   isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100'
                 }`}
                 aria-label="Toggle dark mode"
               >
-                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                {isDark ? <Sun size={16} className="sm:w-[18px] sm:h-[18px]" /> : <Moon size={16} className="sm:w-[18px] sm:h-[18px]" />}
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto px-6 pt-24">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-20 sm:pt-24">
         {/* Hero Section */}
-        <motion.section className="py-20" {...fadeInUp} itemScope itemType="https://schema.org/Person">
+        <motion.section className="py-12 sm:py-20" {...fadeInUp} itemScope itemType="https://schema.org/Person">
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight" itemProp="name">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight" itemProp="name">
               Stephen Campbell
             </h1>
-            <h2 className={`text-lg font-medium mb-4 flex items-center gap-2 ${
+            <h2 className={`text-base sm:text-lg font-medium mb-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 ${
               isDark ? 'text-gray-400' : 'text-gray-600'
             }`} itemProp="jobTitle">
-              full-stack developer | computer programmer
+              <span>full-stack developer | computer programmer</span>
               <span className="text-base">🇨🇦</span>
             </h2>
-            <p className={`text-xl max-w-2xl ${
+            <p className={`text-lg sm:text-xl max-w-2xl ${
               isDark ? 'text-gray-400' : 'text-gray-600'
             }`} itemProp="description">
               chemical engineer turned programmer solving complex problems through intelligent automation and ai-powered solutions.
@@ -140,7 +154,7 @@ export default function Home() {
         {/* About Section */}
         <motion.section 
           id="about" 
-          className={`py-16 border-t transition-colors ${
+          className={`py-12 sm:py-16 border-t transition-colors ${
             isDark ? 'border-slate-700' : 'border-gray-200'
           }`}
           initial={{ opacity: 0 }}
@@ -148,7 +162,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8">about</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">about</h2>
           <div className={`space-y-4 ${
             isDark ? 'text-gray-300' : 'text-gray-700'
           }`}>
@@ -177,7 +191,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8">recent work</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">recent work</h2>
           <div className="space-y-8">
             {[
               {
@@ -275,8 +289,8 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8">skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">skills</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             <div>
               <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">AI & Automation</h3>
               <ul className={`space-y-2 text-sm ${
@@ -323,7 +337,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8">experience</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">experience</h2>
           <div className="space-y-8">
             {[
               {
@@ -386,8 +400,8 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8">toolkit</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">toolkit</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
               <h3 className="font-bold mb-4">Current Stack</h3>
               <ul className={`space-y-2 text-sm ${
@@ -426,7 +440,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8">contact</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">contact</h2>
           <div className="space-y-4">
             <p className={isDark ? 'text-gray-300' : 'text-gray-700'}>
               let&apos;s build something together.
