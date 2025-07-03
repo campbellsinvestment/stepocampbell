@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
+import { Github, Linkedin, Mail, ExternalLink, Brain, Code, Database, Globe, Zap, Terminal, Cpu, Server, Cloud } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -38,8 +38,9 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
               Stephen Campbell
             </h1>
-            <h2 className="text-lg text-gray-600 font-medium mb-4">
+            <h2 className="text-lg text-gray-600 font-medium mb-4 flex items-center gap-2">
               full-stack developer | computer programmer
+              <span className="text-base">🇨🇦</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl">
               chemical engineer turned programmer solving complex problems through intelligent automation and ai-powered solutions.
@@ -197,20 +198,16 @@ export default function Home() {
                 <li>Prompt Engineering</li>
                 <li>OpenAI API Integration</li>
                 <li>Claude AI Development</li>
-                <li>LangChain</li>
                 <li>AI Workflow Design</li>
-                <li>Machine Learning</li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Frontend</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>React & Next.js</li>
-                <li>TypeScript</li>
-                <li>Tailwind CSS</li>
-                <li>Framer Motion</li>
-                <li>Responsive Design</li>
-                <li>Progressive Web Apps</li>
+                <li>HTML/CSS & JavaScript</li>
+                <li>PHP</li>
+                <li>Bootstrap</li>
               </ul>
             </div>
             <div>
@@ -220,8 +217,6 @@ export default function Home() {
                 <li>PostgreSQL & Supabase</li>
                 <li>API Development</li>
                 <li>Cloud Deployment</li>
-                <li>Docker & DevOps</li>
-                <li>Data Analysis</li>
               </ul>
             </div>
           </div>
@@ -239,25 +234,28 @@ export default function Home() {
           <div className="space-y-8">
             {[
               {
-                company: "AI Startup",
-                role: "Lead Full Stack Developer",
+                company: "McMaster University",
+                role: "WordPress Developer",
                 period: "2024 - Present",
-                description: "Leading development of AI-powered productivity tools"
+                description: "Building custom WordPress sites with AODA compliance and Git workflows",
+                skills: ["WordPress", "PHP", "HTML/CSS", "JavaScript", "Git", "ACF"]
               },
               {
-                company: "Tech Consultancy",
-                role: "Senior Developer",
-                period: "2023 - 2024",
-                description: "Building custom web applications and AI integrations"
+                company: "Little Exits",
+                role: "Full Stack Developer, Founder",
+                period: "2021 - 2024",
+                description: "Built marketplace for side project acquisitions, 680+ transactions processed",
+                skills: ["Next.js", "React", "TypeScript", "Supabase", "Stripe", "Vercel", "Bubble", "SendGrid"]
               },
               {
-                company: "Freelance",
-                role: "Full Stack Developer",
-                period: "2022 - 2023",
-                description: "Independent consulting for startups and small businesses"
+                company: "Campbells Investment LLC",
+                role: "Full Stack Developer, Founder",
+                period: "2018 - Present",
+                description: "Freelance web development across music, education, and e-commerce industries",
+                skills: ["WordPress", "HTML/CSS", "PHP", "SEO", "Analytics", "Marketing", "MS Office", "Team Work"]
               }
             ].map((job, index) => (
-              <div key={index} className="space-y-1">
+              <div key={index} className="space-y-3">
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-bold">{job.company}</h3>
@@ -266,6 +264,16 @@ export default function Home() {
                   <span className="text-sm text-gray-500">{job.period}</span>
                 </div>
                 <p className="text-sm text-gray-700">{job.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {job.skills.map((skill, skillIndex) => (
+                    <span 
+                      key={skillIndex}
+                      className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded border"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -279,26 +287,26 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-8">ai toolkit</h2>
+          <h2 className="text-2xl font-bold mb-8">toolkit</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 className="font-bold mb-4">Current Stack</h3>
               <ul className="space-y-2 text-sm text-gray-700">
-                <li>GPT-4 & Claude for development</li>
-                <li>Custom prompt libraries</li>
-                <li>Automated code review workflows</li>
-                <li>AI-assisted testing & debugging</li>
-                <li>Intelligent documentation generation</li>
+                <li>ChatGPT, Claude & GitHub Copilot</li>
+                <li>VS Code & Cursor IDE</li>
+                <li>Git version control (GitHub/GitLab)</li>
+                <li>Vercel, Firebase & Supabase hosting</li>
+                <li>Stripe & third-party API integration</li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-4">Specializations</h3>
               <ul className="space-y-2 text-sm text-gray-700">
-                <li>Prompt optimization & testing</li>
-                <li>AI workflow architecture</li>
-                <li>Custom GPT development</li>
-                <li>Intelligent automation design</li>
-                <li>AI-human collaboration patterns</li>
+                <li>SaaS platform development</li>
+                <li>Payment system integration</li>
+                <li>Database design & optimization</li>
+                <li>SEO & conversion optimization</li>
+                <li>API development & integration</li>
               </ul>
             </div>
           </div>
@@ -316,8 +324,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-8">contact</h2>
           <div className="space-y-4">
             <p className="text-gray-700">
-              interested in ai-powered development, prompt engineering, or building 
-              something innovative together?
+              let's build something together.
             </p>
             <div className="flex space-x-4 pt-4">
               <a 
