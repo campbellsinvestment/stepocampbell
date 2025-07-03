@@ -69,6 +69,24 @@ export const metadata = {
     canonical: 'https://stepocampbell.com',
   },
   category: 'technology',
+  icons: {
+    icon: '/icon',
+    apple: '/apple-icon',
+    other: [
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        url: '/icon',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '192x192',
+        url: '/icon-192',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
