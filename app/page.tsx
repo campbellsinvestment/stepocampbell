@@ -1,9 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ExternalLink, Brain, Code, Database, Globe, Zap, Terminal, Cpu, Server, Cloud } from 'lucide-react'
+import { Github, Linkedin, Mail, ExternalLink, Moon, Sun } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -12,20 +13,68 @@ const fadeInUp = {
 }
 
 export default function Home() {
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      setIsDark(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    // Save theme preference
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }, [isDark])
+
+  const toggleDarkMode = () => {
+    setIsDark(!isDark)
+  }
+
   return (
-    <div className="min-h-screen bg-white text-black font-mono">
+    <div className={`min-h-screen font-mono transition-colors duration-300 ${
+      isDark 
+        ? 'bg-slate-900 text-white' 
+        : 'bg-white text-black'
+    }`}>
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
+      <nav className={`fixed top-0 w-full z-50 backdrop-blur-sm border-b transition-colors duration-300 ${
+        isDark 
+          ? 'bg-slate-900/80 border-slate-700' 
+          : 'bg-white/80 border-gray-200'
+      }`}>
         <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <Link href="/" className="text-lg font-bold">
               Stephen Campbell
             </Link>
-            <div className="flex space-x-6 text-sm">
-              <a href="#about" className="hover:text-gray-600 transition-colors">about</a>
-              <a href="#work" className="hover:text-gray-600 transition-colors">work</a>
-              <a href="#skills" className="hover:text-gray-600 transition-colors">skills</a>
-              <a href="#contact" className="hover:text-gray-600 transition-colors">contact</a>
+            <div className="flex items-center space-x-6">
+              <div className="flex space-x-6 text-sm">
+                <a href="#about" className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}>about</a>
+                <a href="#work" className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}>work</a>
+                <a href="#skills" className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}>skills</a>
+                <a href="#contact" className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}>contact</a>
+              </div>
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className={`p-2 rounded-full transition-colors ${
+                  isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-100'
+                }`}
+                aria-label="Toggle dark mode"
+              >
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
             </div>
           </div>
         </div>
@@ -38,11 +87,15 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
               Stephen Campbell
             </h1>
-            <h2 className="text-lg text-gray-600 font-medium mb-4 flex items-center gap-2">
+            <h2 className={`text-lg font-medium mb-4 flex items-center gap-2 ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>
               full-stack developer | computer programmer
               <span className="text-base">🇨🇦</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl">
+            <p className={`text-xl max-w-2xl ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>
               chemical engineer turned programmer solving complex problems through intelligent automation and ai-powered solutions.
             </p>
             <div className="flex space-x-4 pt-4">
@@ -50,7 +103,9 @@ export default function Home() {
                 href="https://github.com/campbellsinvestment" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-gray-600 transition-colors"
+                className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}
               >
                 <Github size={20} />
               </a>
@@ -58,13 +113,17 @@ export default function Home() {
                 href="https://linkedin.com/in/stepocampbell" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-gray-600 transition-colors"
+                className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}
               >
                 <Linkedin size={20} />
               </a>
               <a 
                 href="mailto:stepocampbell@gmail.com"
-                className="hover:text-gray-600 transition-colors"
+                className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}
               >
                 <Mail size={20} />
               </a>
@@ -75,14 +134,18 @@ export default function Home() {
         {/* About Section */}
         <motion.section 
           id="about" 
-          className="py-16 border-t border-gray-200"
+          className={`py-16 border-t transition-colors ${
+            isDark ? 'border-slate-700' : 'border-gray-200'
+          }`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <h2 className="text-2xl font-bold mb-8">about</h2>
-          <div className="space-y-4 text-gray-700">
+          <div className={`space-y-4 ${
+            isDark ? 'text-gray-300' : 'text-gray-700'
+          }`}>
             <p>
               tldr; mostly self-taught by shipping things on the internet
             </p>
@@ -100,7 +163,9 @@ export default function Home() {
         {/* Recent Work Section */}
         <motion.section 
           id="work" 
-          className="py-16 border-t border-gray-200"
+          className={`py-16 border-t transition-colors ${
+            isDark ? 'border-slate-700' : 'border-gray-200'
+          }`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -160,19 +225,31 @@ export default function Home() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center space-x-3 mb-2">
-                          <h3 className="font-bold group-hover:text-gray-600 transition-colors">{project.title}</h3>
-                          <span className="text-xs text-gray-500 uppercase tracking-wide">
+                          <h3 className={`font-bold transition-colors ${
+                            isDark 
+                              ? 'group-hover:text-gray-400' 
+                              : 'group-hover:text-gray-600'
+                          }`}>{project.title}</h3>
+                          <span className={`text-xs uppercase tracking-wide ${
+                            isDark ? 'text-gray-500' : 'text-gray-500'
+                          }`}>
                             {project.type}
                           </span>
                         </div>
-                        <p className="text-gray-600 text-sm leading-relaxed">
+                        <p className={`text-sm leading-relaxed ${
+                          isDark ? 'text-gray-400' : 'text-gray-600'
+                        }`}>
                           {project.description}
                         </p>
                       </div>
                     </div>
                     <ExternalLink 
                       size={16} 
-                      className="text-gray-400 group-hover:text-black transition-colors ml-4 flex-shrink-0" 
+                      className={`transition-colors ml-4 flex-shrink-0 ${
+                        isDark 
+                          ? 'text-slate-500 group-hover:text-white' 
+                          : 'text-gray-400 group-hover:text-black'
+                      }`} 
                     />
                   </div>
                 </a>
@@ -184,7 +261,9 @@ export default function Home() {
         {/* Skills Section */}
         <motion.section 
           id="skills" 
-          className="py-16 border-t border-gray-200"
+          className={`py-16 border-t transition-colors ${
+            isDark ? 'border-slate-700' : 'border-gray-200'
+          }`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -194,7 +273,9 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">AI & Automation</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <ul className={`space-y-2 text-sm ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}>
                 <li>Prompt Engineering</li>
                 <li>OpenAI API Integration</li>
                 <li>Claude AI Development</li>
@@ -203,7 +284,9 @@ export default function Home() {
             </div>
             <div>
               <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Frontend</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <ul className={`space-y-2 text-sm ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}>
                 <li>React & Next.js</li>
                 <li>HTML/CSS & JavaScript</li>
                 <li>PHP</li>
@@ -212,7 +295,9 @@ export default function Home() {
             </div>
             <div>
               <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Backend & Data</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <ul className={`space-y-2 text-sm ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}>
                 <li>Node.js & Python</li>
                 <li>PostgreSQL & Supabase</li>
                 <li>API Development</li>
@@ -224,7 +309,9 @@ export default function Home() {
 
         {/* Experience Section */}
         <motion.section 
-          className="py-16 border-t border-gray-200"
+          className={`py-16 border-t transition-colors ${
+            isDark ? 'border-slate-700' : 'border-gray-200'
+          }`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -259,16 +346,20 @@ export default function Home() {
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-bold">{job.company}</h3>
-                    <p className="text-gray-600">{job.role}</p>
+                    <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>{job.role}</p>
                   </div>
-                  <span className="text-sm text-gray-500">{job.period}</span>
+                  <span className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>{job.period}</span>
                 </div>
-                <p className="text-sm text-gray-700">{job.description}</p>
+                <p className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{job.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {job.skills.map((skill, skillIndex) => (
                     <span 
                       key={skillIndex}
-                      className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded border"
+                      className={`px-2 py-1 text-xs rounded border ${
+                        isDark 
+                          ? 'bg-slate-800 text-slate-300 border-slate-600' 
+                          : 'bg-gray-100 text-gray-700 border-gray-200'
+                      }`}
                     >
                       {skill}
                     </span>
@@ -281,7 +372,9 @@ export default function Home() {
 
         {/* AI Toolkit Section */}
         <motion.section 
-          className="py-16 border-t border-gray-200"
+          className={`py-16 border-t transition-colors ${
+            isDark ? 'border-slate-700' : 'border-gray-200'
+          }`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -291,7 +384,9 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 className="font-bold mb-4">Current Stack</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <ul className={`space-y-2 text-sm ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}>
                 <li>ChatGPT, Claude & GitHub Copilot</li>
                 <li>VS Code & Cursor IDE</li>
                 <li>Git version control (GitHub/GitLab)</li>
@@ -301,7 +396,9 @@ export default function Home() {
             </div>
             <div>
               <h3 className="font-bold mb-4">Specializations</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+              <ul className={`space-y-2 text-sm ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}>
                 <li>SaaS platform development</li>
                 <li>Payment system integration</li>
                 <li>Database design & optimization</li>
@@ -315,7 +412,9 @@ export default function Home() {
         {/* Contact Section */}
         <motion.section 
           id="contact" 
-          className="py-16 border-t border-gray-200"
+          className={`py-16 border-t transition-colors ${
+            isDark ? 'border-slate-700' : 'border-gray-200'
+          }`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -323,7 +422,7 @@ export default function Home() {
         >
           <h2 className="text-2xl font-bold mb-8">contact</h2>
           <div className="space-y-4">
-            <p className="text-gray-700">
+            <p className={isDark ? 'text-gray-300' : 'text-gray-700'}>
               let's build something together.
             </p>
             <div className="flex space-x-4 pt-4">
@@ -331,7 +430,9 @@ export default function Home() {
                 href="https://github.com/campbellsinvestment" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-gray-600 transition-colors"
+                className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}
               >
                 <Github size={20} />
               </a>
@@ -339,13 +440,17 @@ export default function Home() {
                 href="https://linkedin.com/in/stepocampbell" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-gray-600 transition-colors"
+                className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}
               >
                 <Linkedin size={20} />
               </a>
               <a 
                 href="mailto:stepocampbell@gmail.com"
-                className="hover:text-gray-600 transition-colors"
+                className={`transition-colors ${
+                  isDark ? 'hover:text-gray-400' : 'hover:text-gray-600'
+                }`}
               >
                 <Mail size={20} />
               </a>
@@ -354,8 +459,12 @@ export default function Home() {
         </motion.section>
 
         {/* Footer */}
-        <footer className="py-8 border-t border-gray-200 text-center">
-          <p className="text-xs text-gray-500">
+        <footer className={`py-8 border-t text-center transition-colors ${
+          isDark ? 'border-slate-700' : 'border-gray-200'
+        }`}>
+          <p className={`text-xs ${
+            isDark ? 'text-gray-500' : 'text-gray-500'
+          }`}>
             © 2025 Stephen Campbell. built with next.js & ai assistance.
           </p>
         </footer>
