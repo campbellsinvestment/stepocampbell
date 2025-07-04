@@ -221,6 +221,13 @@ export default function Home() {
                 link: "https://rentfairontario.vercel.app",
                 type: "Data Platform",
                 iconPath: "/icons/rentfair-icon.svg"
+              },
+              {
+                title: "PreRevenue",
+                description: "Evaluate your pre-revenue startup with a simple tagline and traction metrics. Get instant AI analysis based on Little Exits marketplace data from 200+ successful exits.",
+                link: "https://prerevenue.io",
+                type: "Startup Evaluation Tool",
+                iconPath: "/icons/prerevenue.png"
               }
             ].map((project, index) => (
               <div key={index} className="group">
