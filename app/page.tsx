@@ -247,13 +247,13 @@ export default function Home() {
                   <div className="flex items-start justify-between">
                     <div className="flex items-start space-x-4 flex-1">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-8 h-8 flex items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-slate-800">
+                        <div className="w-8 h-8 flex items-center justify-center">
                           <Image 
                             src={project.iconPath} 
                             alt={`${project.title} icon`}
                             width={32} 
                             height={32} 
-                            className="object-cover w-full h-full"
+                            className="object-contain"
                           />
                         </div>
                       </div>
