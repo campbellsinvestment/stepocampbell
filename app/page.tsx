@@ -202,6 +202,13 @@ export default function Home() {
                 iconPath: "/icons/littleexits_favicon.png"
               },
               {
+                title: "The Maker Mindset",
+                description: "The peculiar attributes of the modern day inventor",
+                link: "https://themakermindset.com",
+                type: "Book",
+                iconPath: "/icons/makermindset.png"
+              },
+              {
                 title: "CheckoutKeys",
                 description: "Automated license key management system for digital products. Integrates with Stripe for instant key generation and delivery via customizable emails.",
                 link: "https://checkoutkeys.com",
@@ -223,7 +230,7 @@ export default function Home() {
                 iconPath: "/icons/rentfair-icon.svg"
               },
               {
-                title: "Pre-Revenue",
+                title: "PreRevenue",
                 description: "Evaluate your pre-revenue startup with a simple tagline and traction metrics. Get instant AI analysis based on Little Exits marketplace data from 200+ successful exits.",
                 link: "https://prerevenue.io",
                 type: "Startup Evaluation Tool",
@@ -240,13 +247,13 @@ export default function Home() {
                   <div className="flex items-start justify-between">
                     <div className="flex items-start space-x-4 flex-1">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-8 h-8 flex items-center justify-center">
+                        <div className="w-8 h-8 flex items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-slate-800">
                           <Image 
                             src={project.iconPath} 
                             alt={`${project.title} icon`}
                             width={32} 
                             height={32} 
-                            className="object-contain"
+                            className="object-cover w-full h-full"
                           />
                         </div>
                       </div>
