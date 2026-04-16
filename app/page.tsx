@@ -499,7 +499,7 @@ export default function Home() {
           <p className={`text-xs ${
             isDark ? 'text-gray-500' : 'text-gray-500'
           }`}>
-            © 2025 Stephen Campbell. built with next.js & ai assistance.
+            © {new Date().getFullYear()} Stephen Campbell. built with next.js & ai assistance.
           </p>
         </footer>
       </main>
