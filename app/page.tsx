@@ -235,6 +235,13 @@ export default function Home() {
                 link: "https://prerevenue.io",
                 type: "Startup Evaluation Tool",
                 iconPath: "/icons/prerevenue.png"
+              },
+              {
+                title: "Parking Kiosk Management System",
+                description: "Interactive 3D parking kiosk simulation built with Three.js. Complete with ticket management, payment processing, gate automation, and real-time vehicle controls.",
+                link: "https://campbellsinvestment.github.io/parking-kiosk/",
+                type: "3D Demo",
+                iconPath: "/icons/threejs-logo.svg"
               }
             ].map((project, index) => (
               <div key={index} className="group">
