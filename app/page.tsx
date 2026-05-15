@@ -12,8 +12,11 @@ const fadeInUp = {
   transition: { duration: 0.6 }
 }
 
+const YOUTUBE_VIDEO_ID = 'LUaor3gcGkE'
+
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
+  const [showVideo, setShowVideo] = useState(true)
 
   useEffect(() => {
     // Check for saved theme preference or default to light mode
@@ -29,6 +32,17 @@ export default function Home() {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }, [isDark])
 
+  const closeVideo = () => setShowVideo(false)
+
+  useEffect(() => {
+    if (!showVideo) return
+
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [showVideo])
+
   const toggleDarkMode = () => {
     setIsDark(!isDark)
   }
@@ -39,6 +53,36 @@ export default function Home() {
         ? 'bg-slate-900 text-white' 
         : 'bg-white text-black'
     }`}>
+      {showVideo && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Featured video"
+          onClick={closeVideo}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.25 }}
+            onClick={(e) => e.stopPropagation()}
+            className={`relative z-10 w-full max-w-3xl rounded-lg overflow-hidden shadow-2xl border ${
+              isDark ? 'border-slate-600 bg-slate-900' : 'border-gray-200 bg-white'
+            }`}
+          >
+            <div className="relative aspect-video w-full bg-black">
+              <iframe
+                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0`}
+                title="YouTube video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
+          </motion.div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 backdrop-blur-sm border-b transition-colors duration-300 ${
         isDark 
