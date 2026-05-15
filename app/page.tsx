@@ -18,9 +18,8 @@ export default function Home() {
   useEffect(() => {
     // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    if (savedTheme === 'dark') {
       setIsDark(true)
     }
   }, [])
@@ -104,7 +103,7 @@ export default function Home() {
             <h2 className={`text-base sm:text-lg font-medium mb-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 ${
               isDark ? 'text-gray-400' : 'text-gray-600'
             }`} itemProp="jobTitle">
-              <span>full-stack developer | computer programmer</span>
+              <span>software developer / full stack developer</span>
               <span className="text-base">🇨🇦</span>
             </h2>
             <p className={`text-lg sm:text-xl max-w-2xl ${
@@ -196,7 +195,7 @@ export default function Home() {
             {[
               {
                 title: "Little Exits",
-                description: "Acquisition marketplace for indie hackers to buy and sell side projects under $100k. Features secure transactions, project valuations, and automated invoicing.",
+                description: "Production saas marketplace for digital product acquisitions. Next.js 13+, TypeScript, Firebase, Stripe, and real-time Globe.gl analytics across 150+ countries — 680+ transactions, zero fraud.",
                 link: "https://littleexits.com",
                 type: "SaaS Platform",
                 iconPath: "/icons/littleexits_favicon.png"
@@ -210,35 +209,36 @@ export default function Home() {
               },
               {
                 title: "CheckoutKeys",
-                description: "Automated license key management system for digital products. Integrates with Stripe for instant key generation and delivery via customizable emails.",
+                description: "Automated license key management for digital products. React, Node.js, Stripe checkout with webhooks, and SendGrid for instant key delivery.",
                 link: "https://checkoutkeys.com",
                 type: "B2B SaaS",
                 iconPath: "/icons/checkoutkeys-logo.png"
               },
               {
                 title: "ExcelBot",
-                description: "AI-powered Excel assistant that generates formulas and VBA code from plain language descriptions. Helps users create complex spreadsheet solutions instantly.",
+                description: "AI-powered Excel assistant generating formulas and VBA from plain language. Next.js, OpenAI GPT integration, and responsive mobile-first UI.",
                 link: "https://excelbot.io",
                 type: "AI Tool",
                 iconPath: "/icons/excelbot_favicon.png"
               },
               {
                 title: "Rent Fair Ontario",
-                description: "Rental market comparison tool using official Statistics Canada data. Helps Ontario residents compare their rent to CMHC market averages.",
+                description: "Rental market comparison using Statistics Canada data. Next.js, Vercel deployment, and data visualization helping Ontario residents compare rent to CMHC averages.",
                 link: "https://rentfairontario.vercel.app",
                 type: "Data Platform",
                 iconPath: "/icons/rentfair-icon.svg"
               },
               {
                 title: "PreRevenue",
-                description: "Evaluate your pre-revenue startup with a simple tagline and traction metrics. Get instant AI analysis based on Little Exits marketplace data from 200+ successful exits.",
+                description: "Pre-revenue startup evaluation with instant AI analysis. Next.js, TypeScript, and OpenAI GPT trained on Little Exits marketplace data from 200+ successful exits.",
                 link: "https://prerevenue.io",
                 type: "Startup Evaluation Tool",
                 iconPath: "/icons/prerevenue.png"
               },
               {
                 title: "Parking Kiosk Management System",
-                description: "Interactive 3D parking kiosk simulation built with Three.js. Complete with ticket management, payment processing, gate automation, and real-time vehicle controls.",
+                mobileTitle: "Parking Kiosk",
+                description: "Interactive 3D parking kiosk simulation with Three.js and WebGL. Ticket management, payment processing, gate automation, and real-time vehicle controls.",
                 link: "https://campbellsinvestment.github.io/parking-kiosk/",
                 type: "3D Demo",
                 iconPath: "/icons/threejs-logo.svg"
@@ -251,8 +251,8 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4 flex-1">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-start space-x-3 sm:space-x-4 flex-1 min-w-0">
                       <div className="flex-shrink-0 mt-1">
                         <div className="w-8 h-8 flex items-center justify-center">
                           <Image 
@@ -264,19 +264,20 @@ export default function Home() {
                           />
                         </div>
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <h3 className={`font-bold transition-colors ${
-                            isDark 
-                              ? 'group-hover:text-gray-400' 
-                              : 'group-hover:text-gray-600'
-                          }`}>{project.title}</h3>
-                          <span className={`text-xs uppercase tracking-wide ${
+                      <div className="flex-1 min-w-0">
+                        <h3 className={`font-bold leading-snug mb-2 transition-colors ${
+                          isDark 
+                            ? 'group-hover:text-gray-400' 
+                            : 'group-hover:text-gray-600'
+                        }`}>
+                          <span className="sm:hidden">{project.mobileTitle ?? project.title}</span>
+                          <span className="hidden sm:inline">{project.title}</span>
+                          <span className={`ml-2 text-xs font-normal uppercase tracking-wide whitespace-nowrap align-middle ${
                             isDark ? 'text-gray-500' : 'text-gray-500'
                           }`}>
                             {project.type}
                           </span>
-                        </div>
+                        </h3>
                         <p className={`text-sm leading-relaxed ${
                           isDark ? 'text-gray-400' : 'text-gray-600'
                         }`}>
@@ -286,7 +287,7 @@ export default function Home() {
                     </div>
                     <ExternalLink 
                       size={16} 
-                      className={`transition-colors ml-4 flex-shrink-0 ${
+                      className={`transition-colors flex-shrink-0 mt-1 ${
                         isDark 
                           ? 'text-slate-500 group-hover:text-white' 
                           : 'text-gray-400 group-hover:text-black'
@@ -313,36 +314,69 @@ export default function Home() {
           <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">skills</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             <div>
-              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">AI & Automation</h3>
+              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Languages & Frameworks</h3>
               <ul className={`space-y-2 text-sm ${
                 isDark ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                <li>Prompt Engineering</li>
-                <li>OpenAI API Integration</li>
-                <li>Claude AI Development</li>
-                <li>AI Workflow Design</li>
+                <li>TypeScript & JavaScript</li>
+                <li>Next.js 13+ & React</li>
+                <li>Python, Node.js & Django</li>
+                <li>PHP, HTML5 & CSS3</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Frontend</h3>
+              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Cloud & Backend</h3>
               <ul className={`space-y-2 text-sm ${
                 isDark ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                <li>React & Next.js</li>
-                <li>HTML/CSS & JavaScript</li>
-                <li>PHP</li>
-                <li>Bootstrap</li>
+                <li>Firebase (Auth, Firestore, Functions)</li>
+                <li>Supabase & PostgreSQL</li>
+                <li>RESTful APIs & Serverless</li>
+                <li>SQL & Database Design</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Backend & Data</h3>
+              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Frontend & Visualization</h3>
               <ul className={`space-y-2 text-sm ${
                 isDark ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                <li>Node.js & Python</li>
-                <li>PostgreSQL & Supabase</li>
-                <li>API Development</li>
-                <li>Cloud Deployment</li>
+                <li>React Hooks & Tailwind CSS</li>
+                <li>Three.js, Globe.gl & WebGL</li>
+                <li>Bootstrap & Responsive Design</li>
+                <li>Mobile-First Development</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Integrations & APIs</h3>
+              <ul className={`space-y-2 text-sm ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                <li>Stripe (Checkout, Webhooks)</li>
+                <li>SendGrid & ConvertKit</li>
+                <li>Google Analytics 4 & OpenAI GPT</li>
+                <li>Google OAuth & Webhooks</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Developer Tools</h3>
+              <ul className={`space-y-2 text-sm ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                <li>Git (GitHub, GitLab) & CI/CD</li>
+                <li>VS Code, Cursor & Claude Code</li>
+                <li>Vercel & Agile/Scrum</li>
+                <li>TDD, Unit Testing & Chrome DevTools</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4 text-sm uppercase tracking-wide">Accessibility & SEO</h3>
+              <ul className={`space-y-2 text-sm ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                <li>WCAG / AODA Compliance</li>
+                <li>WAVE Testing</li>
+                <li>Google Search Console & Schema Markup</li>
+                <li>Core Web Vitals Optimization</li>
               </ul>
             </div>
           </div>
@@ -365,22 +399,29 @@ export default function Home() {
                 company: "McMaster University",
                 role: "WordPress Developer",
                 period: "2024 - Present",
-                description: "Building custom WordPress sites with AODA compliance and Git workflows",
-                skills: ["WordPress", "PHP", "HTML/CSS", "JavaScript", "Git", "ACF"]
+                description: "Custom WordPress solutions with AODA compliance, ACF components, and GitLab/GitHub workflows for internal and external clients",
+                skills: ["WordPress", "PHP", "HTML5", "CSS3", "JavaScript", "Bootstrap", "ACF", "Git", "WAVE"]
               },
               {
                 company: "Little Exits",
-                role: "Full Stack Developer, Founder",
-                period: "2021 - 2024",
-                description: "Built marketplace for side project acquisitions, 680+ transactions processed",
-                skills: ["Next.js", "React", "TypeScript", "Supabase", "Stripe", "Vercel", "Bubble", "SendGrid"]
+                role: "Full Stack Developer",
+                period: "2021 - Present",
+                description: "Production SaaS marketplace with 680+ transactions. Next.js 13+, TypeScript, Firebase migration from Bubble (50k+ records), Stripe payments, and Globe.gl analytics dashboard",
+                skills: ["Next.js", "TypeScript", "React", "Firebase", "Stripe", "Three.js", "Globe.gl", "SendGrid", "Vercel"]
               },
               {
                 company: "Campbells Investment LLC",
-                role: "Full Stack Developer, Founder",
-                period: "2018 - Present",
-                description: "Freelance web development across music, education, and e-commerce industries",
-                skills: ["WordPress", "HTML/CSS", "PHP", "SEO", "Analytics", "Marketing", "MS Office", "Team Work"]
+                role: "WordPress Developer (Freelance)",
+                period: "2018 - 2022",
+                description: "Freelance WordPress development across music, education, and e-commerce industries",
+                skills: ["WordPress", "PHP", "HTML5", "CSS3", "SEO", "Google Analytics"]
+              },
+              {
+                company: "Jamalco, Bauxite Refinery",
+                role: "Process Engineer",
+                period: "2015 - 2019",
+                description: "Full-time process engineering at bauxite refinery prior to career transition into software development",
+                skills: ["Process Engineering", "Chemical Engineering", "Operations"]
               }
             ].map((job, index) => (
               <div key={index} className="space-y-3">
@@ -428,11 +469,11 @@ export default function Home() {
               <ul className={`space-y-2 text-sm ${
                 isDark ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                <li>ChatGPT, Claude & GitHub Copilot</li>
-                <li>VS Code & Cursor IDE</li>
-                <li>Git version control (GitHub/GitLab)</li>
-                <li>Vercel, Firebase & Supabase hosting</li>
-                <li>Stripe & third-party API integration</li>
+                <li>Next.js 13+, React & TypeScript</li>
+                <li>Firebase, Supabase & PostgreSQL</li>
+                <li>Cursor, Claude Code & VS Code</li>
+                <li>Vercel deployment & CI/CD</li>
+                <li>Stripe, SendGrid & OpenAI GPT</li>
               </ul>
             </div>
             <div>
@@ -440,11 +481,11 @@ export default function Home() {
               <ul className={`space-y-2 text-sm ${
                 isDark ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                <li>SaaS platform development</li>
-                <li>Payment system integration</li>
-                <li>Database design & optimization</li>
-                <li>SEO & conversion optimization</li>
-                <li>API development & integration</li>
+                <li>Production SaaS marketplace development</li>
+                <li>Payment systems & fraud prevention</li>
+                <li>Database migration & serverless architecture</li>
+                <li>SEO, schema markup & Core Web Vitals</li>
+                <li>Real-time data visualization (Three.js, Globe.gl)</li>
               </ul>
             </div>
           </div>
