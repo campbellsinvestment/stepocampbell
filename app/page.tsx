@@ -195,7 +195,7 @@ export default function Home() {
             {[
               {
                 title: "Little Exits",
-                description: "Production saas marketplace for digital product acquisitions. Next.js 13+, TypeScript, Firebase, Stripe, and real-time Globe.gl analytics across 150+ countries — 680+ transactions, zero fraud.",
+                description: "Production saas marketplace for digital product acquisitions. Next.js 13+, TypeScript, Firebase, Stripe, and real-time Globe.gl analytics across 150+ countries.",
                 link: "https://littleexits.com",
                 type: "SaaS Platform",
                 iconPath: "/icons/littleexits_favicon.png"
@@ -406,7 +406,7 @@ export default function Home() {
                 company: "Little Exits",
                 role: "Full Stack Developer",
                 period: "2021 - Present",
-                description: "Production SaaS marketplace with 680+ transactions. Next.js 13+, TypeScript, Firebase migration from Bubble (50k+ records), Stripe payments, and Globe.gl analytics dashboard",
+                description: "Production SaaS marketplace. Next.js 13+, TypeScript, Firebase migration from Bubble (50k+ records), Stripe payments, and Globe.gl analytics dashboard",
                 skills: ["Next.js", "TypeScript", "React", "Firebase", "Stripe", "Three.js", "Globe.gl", "SendGrid", "Vercel"]
               },
               {
