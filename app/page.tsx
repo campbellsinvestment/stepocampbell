@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, ExternalLink, Moon, Sun } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -16,7 +16,10 @@ const YOUTUBE_VIDEO_ID = 'LUaor3gcGkE'
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
-  const [showVideo, setShowVideo] = useState(true)
+  const [showVideo, setShowVideo] = useState(false)
+  const [videoDismissed, setVideoDismissed] = useState(false)
+  const aboutRef = useRef<HTMLElement>(null)
+  const videoTriggeredRef = useRef(false)
 
   useEffect(() => {
     // Check for saved theme preference or default to light mode
@@ -32,7 +35,34 @@ export default function Home() {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }, [isDark])
 
-  const closeVideo = () => setShowVideo(false)
+  const closeVideo = () => {
+    setShowVideo(false)
+    setVideoDismissed(true)
+  }
+
+  useEffect(() => {
+    if (videoDismissed) return
+
+    const triggerVideoIfAboutVisible = () => {
+      if (videoTriggeredRef.current || !aboutRef.current) return
+      // Require scrolling well past the hero before triggering
+      if (window.scrollY < 320) return
+
+      const rect = aboutRef.current.getBoundingClientRect()
+      const aboutInView =
+        rect.top < window.innerHeight * 0.42 &&
+        rect.top > 24 &&
+        rect.bottom > window.innerHeight * 0.45
+
+      if (aboutInView) {
+        videoTriggeredRef.current = true
+        setShowVideo(true)
+      }
+    }
+
+    window.addEventListener('scroll', triggerVideoIfAboutVisible, { passive: true })
+    return () => window.removeEventListener('scroll', triggerVideoIfAboutVisible)
+  }, [videoDismissed])
 
   useEffect(() => {
     if (!showVideo) return
@@ -54,7 +84,10 @@ export default function Home() {
         : 'bg-white text-black'
     }`}>
       {showVideo && (
-        <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80"
           role="dialog"
           aria-modal="true"
@@ -62,9 +95,9 @@ export default function Home() {
           onClick={closeVideo}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.25 }}
+            initial={{ opacity: 0, scale: 0.9, y: 28 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
             className={`relative z-10 w-full max-w-3xl rounded-lg overflow-hidden shadow-2xl border ${
               isDark ? 'border-slate-600 bg-slate-900' : 'border-gray-200 bg-white'
@@ -72,15 +105,15 @@ export default function Home() {
           >
             <div className="relative aspect-video w-full bg-black">
               <iframe
-                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0`}
+                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&playsinline=1`}
                 title="YouTube video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute inset-0 h-full w-full"
               />
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       )}
 
       {/* Navigation */}
@@ -196,6 +229,7 @@ export default function Home() {
 
         {/* About Section */}
         <motion.section 
+          ref={aboutRef}
           id="about" 
           className={`py-12 sm:py-16 border-t transition-colors ${
             isDark ? 'border-slate-700' : 'border-gray-200'
@@ -243,6 +277,13 @@ export default function Home() {
                 link: "https://littleexits.com",
                 type: "SaaS Platform",
                 iconPath: "/icons/littleexits_favicon.png"
+              },
+              {
+                title: "MidiTabs",
+                description: "macOS app that transcribes MIDI guitar input into tablature and standard notation in real time with click-to-edit and acoustic playback.",
+                link: "https://miditabs.com",
+                type: "macOS App",
+                iconPath: "/icons/miditabs.png"
               },
               {
                 title: "The Maker Mindset",
@@ -298,13 +339,19 @@ export default function Home() {
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-start space-x-3 sm:space-x-4 flex-1 min-w-0">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-8 h-8 flex items-center justify-center">
+                        <div className="w-8 h-8 flex items-center justify-center overflow-hidden rounded-lg">
                           <Image 
                             src={project.iconPath} 
                             alt={`${project.title} icon`}
                             width={32} 
                             height={32} 
-                            className="object-contain"
+                            className={`w-full h-full rounded-lg ${
+                              project.iconPath.endsWith('.jpeg') ||
+                              project.iconPath.endsWith('.jpg') ||
+                              project.iconPath.includes('miditabs')
+                                ? 'object-cover'
+                                : 'object-contain'
+                            }`}
                           />
                         </div>
                       </div>
