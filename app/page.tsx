@@ -307,13 +307,6 @@ export default function Home() {
                 iconPath: "/icons/excelbot_favicon.png"
               },
               {
-                title: "Rent Fair Ontario",
-                description: "Rental market comparison using Statistics Canada data. Next.js, Vercel deployment, and data visualization helping Ontario residents compare rent to CMHC averages.",
-                link: "https://rentfairontario.vercel.app",
-                type: "Data Platform",
-                iconPath: "/icons/rentfair-icon.svg"
-              },
-              {
                 title: "PreRevenue",
                 description: "Pre-revenue startup evaluation with instant AI analysis. Next.js, TypeScript, and OpenAI GPT trained on Little Exits marketplace data from 200+ successful exits.",
                 link: "https://prerevenue.io",
