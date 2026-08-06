@@ -488,7 +488,7 @@ export default function Home() {
             {[
               {
                 company: "McMaster University",
-                role: "WordPress Developer",
+                role: "Web Developer",
                 period: "2024 - Present",
                 description: "Custom WordPress solutions with AODA compliance, ACF components, and GitLab/GitHub workflows for internal and external clients",
                 skills: ["WordPress", "PHP", "HTML5", "CSS3", "JavaScript", "Bootstrap", "ACF", "Git", "WAVE"]
@@ -502,7 +502,7 @@ export default function Home() {
               },
               {
                 company: "Campbells Investment LLC",
-                role: "WordPress Developer (Freelance)",
+                role: "Web Developer (No Code)",
                 period: "2018 - 2022",
                 description: "Freelance WordPress development across music, education, and e-commerce industries",
                 skills: ["WordPress", "PHP", "HTML5", "CSS3", "SEO", "Google Analytics"]
@@ -518,8 +518,11 @@ export default function Home() {
               <div key={index} className="space-y-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-bold">{job.company}</h3>
-                    <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>{job.role}</p>
+                    {job.company && <h3 className="font-bold">{job.company}</h3>}
+                    <p className={job.company
+                      ? (isDark ? 'text-gray-400' : 'text-gray-600')
+                      : 'font-bold'
+                    }>{job.role}</p>
                   </div>
                   <span className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>{job.period}</span>
                 </div>
