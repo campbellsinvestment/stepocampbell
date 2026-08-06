@@ -346,8 +346,7 @@ export default function Home() {
                             ? 'group-hover:text-gray-400' 
                             : 'group-hover:text-gray-600'
                         }`}>
-                          <span className="sm:hidden">{project.mobileTitle ?? project.title}</span>
-                          <span className="hidden sm:inline">{project.title}</span>
+                          <span>{project.title}</span>
                           <span className={`ml-2 text-xs font-normal uppercase tracking-wide whitespace-nowrap align-middle ${
                             isDark ? 'text-gray-500' : 'text-gray-500'
                           }`}>
