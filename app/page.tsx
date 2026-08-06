@@ -563,7 +563,6 @@ export default function Home() {
                 <li>Payment systems & fraud prevention</li>
                 <li>Database migration & serverless architecture</li>
                 <li>SEO, schema markup & Core Web Vitals</li>
-                <li>Real-time data visualization (Three.js, Globe.gl)</li>
               </ul>
             </div>
           </div>
